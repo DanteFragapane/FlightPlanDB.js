@@ -1,7 +1,7 @@
 const request = require('request')
 const baseUri = 'https://api.flightplandatabase.com'
 
-module.exports = class FlightPlanDB {
+class FlightPlanDB {
   constructor (apiKey) {
     this.apiKey = apiKey
   }
@@ -22,3 +22,5 @@ module.exports = class FlightPlanDB {
     })
   }
 }
+
+module.exports = FlightPlanDB
