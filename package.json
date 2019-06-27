@@ -1,6 +1,6 @@
 {
   "name": "flightplandb",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "An API wrapper for the website FlightPlanDatabase's API",
   "main": "flightplandb.js",
   "scripts": {
@@ -14,8 +14,8 @@
     "flightplan",
     "flight",
     "plan",
-    "api", 
-    "wrapper", 
+    "api",
+    "wrapper",
     "api wrapper"
   ],
   "author": "Dante Fragapane",
