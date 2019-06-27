@@ -6,6 +6,7 @@ class FlightPlanDB {
     this.apiKey = apiKey
   }
 
+  // Get the flight plan with the corresponding ID
   getFlightPlan(id, callback) {
     axios.get(`${baseUri}/plan/${id}`).then(data => {
       if (data.status === 200) {
@@ -16,10 +17,12 @@ class FlightPlanDB {
     })
   }
 
+  // The query version of the flight plan search
   flightPlanQuery(query, callback) {
     this._sendRequest('search/plans', { q: query }, callback)
   }
 
+  // The to from version of the flight plan search
   flightPlanFromTo(from, to, callback) {
     this._sendRequest('search/plans', { from: from, to: to }, callback)
   }
