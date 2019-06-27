@@ -1,0 +1,27 @@
+{
+  "name": "flightplandb",
+  "version": "1.0.0",
+  "description": "An API wrapper for the website FlightPlanDatabase's API",
+  "main": "flightplandb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanteFragapane/FlightPlanDB.js.git"
+  },
+  "keywords": [
+    "flightplan",
+    "flight",
+    "plan",
+    "api", 
+    "wrapper", 
+    "api wrapper"
+  ],
+  "author": "Dante Fragapane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanteFragapane/FlightPlanDB.js/issues"
+  },
+  "homepage": "https://github.com/DanteFragapane/FlightPlanDB.js#readme"
+}

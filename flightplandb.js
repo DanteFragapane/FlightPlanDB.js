@@ -19,29 +19,41 @@ class FlightPlanDB {
 
   // The query version of the flight plan search
   flightPlanQuery(query, callback) {
-    this._sendRequest('search/plans', { q: query }, callback)
+    this._sendRequest('search/plans', {
+      q: query
+    }, callback)
   }
 
   // The from to version of the flight plan search
   flightPlanFromTo(from, to, callback) {
-    this._sendRequest('search/plans', { from: from, to: to }, callback)
+    this._sendRequest('search/plans', {
+      from: from,
+      to: to
+    }, callback)
   }
 
   // The ICAO version of the From To search
   flightPlanIcaoFromTo(fromIcao, toIcao, callback) {
-    this._sendRequest('search/plans', { fromICAO: fromIcao, toICAO: toIcao }, callback)
+    this._sendRequest('search/plans', {
+      fromICAO: fromIcao,
+      toICAO: toIcao
+    }, callback)
   }
 
   // Seaerch via flight number
   flightPlanFlightNumber(flightNumber, callback) {
-    this._sendRequest('search/plans', { flightNumber: flightNumber }, callback)
+    this._sendRequest('search/plans', {
+      flightNumber: flightNumber
+    }, callback)
   }
 
   // The actual request function
   _sendRequest(type, options = {}, callback) {
     const uri = `${baseUri}/${type}`
     options.apiKey = this.apiKey
-    axios.get(uri, {params: options}).then(data => {
+    axios.get(uri, {
+      params: options
+    }).then(data => {
       callback(data.data)
     }).catch(err => {
       console.error(err)
