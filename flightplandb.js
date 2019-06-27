@@ -32,6 +32,11 @@ class FlightPlanDB {
     this._sendRequest('search/plans', { fromICAO: fromIcao, toICAO: toIcao }, callback)
   }
 
+  // Seaerch via flight number
+  flightPlanFlightNumber(flightNumber, callback) {
+    this._sendRequest('search/plans', { flightNumber: flightNumber }, callback)
+  }
+
   // The actual request function
   _sendRequest(type, options = {}, callback) {
     const uri = `${baseUri}/${type}`
