@@ -90,7 +90,7 @@ class FlightPlanDB {
       console.error(err)
     })
   }
-  
+
   // The actual request function
   _sendRequest(type, options = {}, callback) {
     const uri = `${baseUri}/${type}`
@@ -98,7 +98,9 @@ class FlightPlanDB {
     axios.get(uri, {
       params: options
     }).then(data => {
-      callback(data.data)
+      if (data.status === 200) {
+        callback(data.data)
+      } else console.error(data)
     }).catch(err => {
       console.error(err)
     })
