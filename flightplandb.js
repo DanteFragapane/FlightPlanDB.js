@@ -22,9 +22,14 @@ class FlightPlanDB {
     this._sendRequest('search/plans', { q: query }, callback)
   }
 
-  // The to from version of the flight plan search
+  // The from to version of the flight plan search
   flightPlanFromTo(from, to, callback) {
     this._sendRequest('search/plans', { from: from, to: to }, callback)
+  }
+
+  // The ICAO version of the From To search
+  flightPlanIcaoFromTo(fromIcao, toIcao, callback) {
+    this._sendRequest('search/plans', { fromICAO: fromIcao, toICAO: toIcao }, callback)
   }
 
   // The actual request function
