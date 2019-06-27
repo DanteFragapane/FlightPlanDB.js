@@ -70,28 +70,35 @@ class FlightPlanDB {
   }
 
   // Generate a flight plan
-  generateFlightPlan(fromIcao, toIcao, callback,
-    useNat = true, usePacot = true, useAwylo = true, useAwyhi = true,
-    cruiseAlt = 35000, cruiseSpeed = 420,
-    ascentRate = 2500, ascentSpeed = 250,
-    descentRate = 1500, descentSpeed = 250) {
-    const options = {
+  generateFlightPlan(fromIcao, toIcao, callback, options = {
+    useNat: true,
+    usePacot: true,
+    useAwylo: true,
+    useAwyhi: true,
+    cruiseAlt: 35000,
+    cruiseSpeed: 420,
+    ascentRate: 2500,
+    ascentSpeed: 250,
+    descentRate: 1500,
+    descentSpeed: 250
+  }) {
+    const parameters = {
       fromICAO: fromIcao,
       toICAO: toIcao,
-      useNAT: useNat,
-      usePACOT: usePacot,
-      useAWYLO: useAwylo,
-      useAWYHI: useAwyhi,
-      cruiseAlt: cruiseAlt,
-      cruiseSpeed: cruiseSpeed,
-      ascentRate: ascentRate,
-      ascentSpeed: ascentSpeed,
-      descentRate: descentRate,
-      descentSpeed: descentSpeed
+      useNAT: options.useNat,
+      usePACOT: options.usePacot,
+      useAWYLO: options.useAwylo,
+      useAWYHI: options.useAwyhi,
+      cruiseAlt: options.cruiseAlt,
+      cruiseSpeed: options.cruiseSpeed,
+      ascentRate: options.ascentRate,
+      ascentSpeed: options.ascentSpeed,
+      descentRate: options.descentRate,
+      descentSpeed: options.descentSpeed
     }
 
     const uri = `${baseUri}/auto/generate`
-    axios.post(uri, options, {
+    axios.post(uri, parameters, {
       headers: {
         Authorization: this.apiKey
       }
