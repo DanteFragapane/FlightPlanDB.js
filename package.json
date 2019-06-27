@@ -13,7 +13,10 @@
   "keywords": [
     "flightplan",
     "flight",
-    "plan"
+    "plan",
+    "api", 
+    "wrapper", 
+    "api wrapper"
   ],
   "author": "Dante Fragapane",
   "license": "ISC",
