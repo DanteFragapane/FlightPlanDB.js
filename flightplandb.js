@@ -1,24 +1,37 @@
-const request = require('request')
+const axios = require('axios')
 const baseUri = 'https://api.flightplandatabase.com'
 
 class FlightPlanDB {
-  constructor (apiKey) {
+  constructor(apiKey) {
     this.apiKey = apiKey
   }
 
-  getFlightPlan (id, callback) {
-    this._sendRequest('plan', id, callback)
+  getFlightPlan(id, callback) {
+    axios.get(`${baseUri}/plan/${id}`).then(data => {
+      if (data.status === 200) {
+        callback(data.data)
+      }
+    }).catch(err => {
+      console.error(err)
+    })
   }
 
-  _sendRequest (type, options, callback) {
-    const url = `${baseUri}/${type}/${options}`
-    request(url, function (err, response, body) {
-      if (err) {
-        console.error(err)
-      }
-      if (!err) {
-        callback(JSON.parse(body))
-      }
+  flightPlanQuery(query, callback) {
+    this._sendRequest('search/plans', { q: query }, callback)
+  }
+
+  flightPlanFromTo(from, to, callback) {
+    this._sendRequest('search/plans', { from: from, to: to }, callback)
+  }
+
+  // The actual request function
+  _sendRequest(type, options = {}, callback) {
+    const uri = `${baseUri}/${type}`
+    options.apiKey = this.apiKey
+    axios.get(uri, {params: options}).then(data => {
+      callback(data.data)
+    }).catch(err => {
+      console.error(err)
     })
   }
 }
