@@ -17,6 +17,17 @@ class FlightPlanDB {
     })
   }
 
+  // Get the airport information for the given ICAO
+  getAirport(icao, callback) {
+    axios.get(`${baseUri}/nav/airport/${id}`).then(data => {
+      if (data.status === 200) {
+        callback(data.data)
+      }
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
   // The query version of the flight plan search
   flightPlanQuery(query, callback) {
     this._sendRequest('search/plans', {
@@ -79,7 +90,7 @@ class FlightPlanDB {
       console.error(err)
     })
   }
-
+  
   // The actual request function
   _sendRequest(type, options = {}, callback) {
     const uri = `${baseUri}/${type}`
