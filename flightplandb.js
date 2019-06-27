@@ -19,7 +19,18 @@ class FlightPlanDB {
 
   // Get the airport information for the given ICAO
   getAirport(icao, callback) {
-    axios.get(`${baseUri}/nav/airport/${id}`).then(data => {
+    axios.get(`${baseUri}/nav/airport/${icao}`).then(data => {
+      if (data.status === 200) {
+        callback(data.data)
+      }
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  // Get the weather for a given airport's ICAO
+  getWeather(icao, callback) {
+    axios.get(`${baseUri}/weather/${icao}`).then(data => {
       if (data.status === 200) {
         callback(data.data)
       }
