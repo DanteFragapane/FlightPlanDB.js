@@ -47,6 +47,39 @@ class FlightPlanDB {
     }, callback)
   }
 
+  // Generate a flight plan
+  generateFlightPlan(fromIcao, toIcao, callback,
+    useNat = true, usePacot = true, useAwylo = true, useAwyhi = true,
+    cruiseAlt = 35000, cruiseSpeed = 420,
+    ascentRate = 2500, ascentSpeed = 250,
+    descentRate = 1500, descentSpeed = 250) {
+    const options = {
+      fromICAO: fromIcao,
+      toICAO: toIcao,
+      useNAT: useNat,
+      usePACOT: usePacot,
+      useAWYLO: useAwylo,
+      useAWYHI: useAwyhi,
+      cruiseAlt: cruiseAlt,
+      cruiseSpeed: cruiseSpeed,
+      ascentRate: ascentRate,
+      ascentSpeed: ascentSpeed,
+      descentRate: descentRate,
+      descentSpeed: descentSpeed
+    }
+
+    const uri = `${baseUri}/auto/generate`
+    axios.post(uri, options, {
+      headers: {
+        Authorization: this.apiKey
+      }
+    }).then(data => {
+      callback(data.data)
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
   // The actual request function
   _sendRequest(type, options = {}, callback) {
     const uri = `${baseUri}/${type}`
