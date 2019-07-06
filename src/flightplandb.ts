@@ -5,9 +5,26 @@ interface Options {
   [propName: string]: any
 }
 
-interface Route {
-
+interface Nodes {
+  nodes: Array<{
+    type: string,
+    ident: string,
+    name: string,
+    lat: number, 
+    lon: number,
+    alt: number | null,
+    via: string | null
+  }>
 }
+
+class Route {
+  route: Nodes
+  constructor (nodes: Nodes) {
+    this.route = nodes
+  }
+}
+
+
 
 class FlightPlanDB {
   apiKey: string

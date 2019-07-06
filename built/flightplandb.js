@@ -1,6 +1,12 @@
 "use strict";
 var axios_1 = require("axios");
 var baseUri = 'https://api.flightplandatabase.com';
+var Route = /** @class */ (function () {
+    function Route(nodes) {
+        this.route = nodes;
+    }
+    return Route;
+}());
 var FlightPlanDB = /** @class */ (function () {
     function FlightPlanDB(apiKey) {
         this.apiKey = apiKey;
