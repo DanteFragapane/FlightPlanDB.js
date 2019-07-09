@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "outDir": "./built",
+        "allowJs": true,
+        "target": "es5",
+        "watch": true
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "scripts": {
+        "test": "mocha -r ts-node/register tests/**/*.test.ts",
+        "testWithCoverage": "nyc -r lcov -e .ts -x \"*.test.ts\" mocha -r ts-node/register tests/**/*.test.ts && nyc report"
+    }
+}
