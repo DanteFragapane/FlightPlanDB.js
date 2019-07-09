@@ -12,12 +12,12 @@ const db = new FlightPlanDB(apiKey)
 //   console.log(response)
 // })
 
-db.generateFlightPlan('KCLE', 'KDEN', (response) => {
-	console.log(response)
-})
+// db.generateFlightPlan('KCLE', 'KDEN', (response) => {
+// 	console.log(response)
+// })
 
 // db.getAirport('KCLE', (response) => {
-//   console.log(response)
+// 	console.log(response)
 // })
 
 // db.getWeather('KCLE', (response) => {
