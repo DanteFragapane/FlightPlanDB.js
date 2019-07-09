@@ -1,43 +1,54 @@
 "use strict";
-var axios_1 = require("axios");
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var axios_1 = __importDefault(require("axios"));
 var baseUri = 'https://api.flightplandatabase.com';
+// Class for the route object
 var Route = /** @class */ (function () {
     function Route(nodes) {
         this.route = nodes;
     }
     return Route;
 }());
+// Main class
 var FlightPlanDB = /** @class */ (function () {
     function FlightPlanDB(apiKey) {
         this.apiKey = apiKey;
     }
     // Get the flight plan with the corresponding ID
     FlightPlanDB.prototype.getFlightPlan = function (id, callback) {
-        axios_1.default.get(baseUri + "/plan/" + id).then(function (data) {
+        axios_1.default.get(baseUri + "/plan/" + id)
+            .then(function (data) {
             if (data.status === 200) {
                 callback(data.data);
             }
-        }).catch(function (err) {
+        })
+            .catch(function (err) {
             console.error(err);
         });
     };
     // Get the airport information for the given ICAO
     FlightPlanDB.prototype.getAirport = function (icao, callback) {
-        axios_1.default.get(baseUri + "/nav/airport/" + icao).then(function (data) {
+        axios_1.default.get(baseUri + "/nav/airport/" + icao)
+            .then(function (data) {
             if (data.status === 200) {
                 callback(data.data);
             }
-        }).catch(function (err) {
+        })
+            .catch(function (err) {
             console.error(err);
         });
     };
     // Get the weather for a given airport's ICAO
     FlightPlanDB.prototype.getWeather = function (icao, callback) {
-        axios_1.default.get(baseUri + "/weather/" + icao).then(function (data) {
+        axios_1.default.get(baseUri + "/weather/" + icao)
+            .then(function (data) {
             if (data.status === 200) {
                 callback(data.data);
             }
-        }).catch(function (err) {
+        })
+            .catch(function (err) {
             console.error(err);
         });
     };
@@ -68,41 +79,35 @@ var FlightPlanDB = /** @class */ (function () {
         }, callback);
     };
     // Generate a flight plan
-    FlightPlanDB.prototype.generateFlightPlan = function (fromIcao, toIcao, callback, options) {
-        if (options === void 0) { options = {
-            useNat: true,
-            usePacot: true,
-            useAwylo: true,
-            useAwyhi: true,
-            cruiseAlt: 35000,
-            cruiseSpeed: 420,
-            ascentRate: 2500,
-            ascentSpeed: 250,
-            descentRate: 1500,
-            descentSpeed: 250
-        }; }
+    FlightPlanDB.prototype.generateFlightPlan = function (fromIcao, toIcao, callback, useNat, usePacot, useAwylo, useAwyhi, cruiseAlt, cruiseSpeed, ascentRate, ascentSpeed, descentRate, descentSpeed) {
+        if (useNat === void 0) { useNat = true; }
+        if (usePacot === void 0) { usePacot = true; }
+        if (useAwylo === void 0) { useAwylo = true; }
+        if (useAwyhi === void 0) { useAwyhi = true; }
         var parameters = {
             fromICAO: fromIcao,
             toICAO: toIcao,
-            useNAT: options.useNat,
-            usePACOT: options.usePacot,
-            useAWYLO: options.useAwylo,
-            useAWYHI: options.useAwyhi,
-            cruiseAlt: options.cruiseAlt,
-            cruiseSpeed: options.cruiseSpeed,
-            ascentRate: options.ascentRate,
-            ascentSpeed: options.ascentSpeed,
-            descentRate: options.descentRate,
-            descentSpeed: options.descentSpeed
+            useNAT: useNat,
+            usePACOT: usePacot,
+            useAWYLO: useAwylo,
+            useAWYHI: useAwyhi,
+            cruiseAlt: cruiseAlt,
+            cruiseSpeed: cruiseSpeed,
+            ascentRate: ascentRate,
+            ascentSpeed: ascentSpeed,
+            descentRate: descentRate,
+            descentSpeed: descentSpeed
         };
         var uri = baseUri + "/auto/generate";
         axios_1.default.post(uri, parameters, {
             headers: {
                 Authorization: this.apiKey
             }
-        }).then(function (data) {
+        })
+            .then(function (data) {
             callback(data.data);
-        }).catch(function (err) {
+        })
+            .catch(function (err) {
             console.error(err);
         });
     };
@@ -112,13 +117,15 @@ var FlightPlanDB = /** @class */ (function () {
         options.apiKey = this.apiKey;
         axios_1.default.get(uri, {
             params: options
-        }).then(function (data) {
+        })
+            .then(function (data) {
             if (data.status === 200) {
                 callback(data.data);
             }
             else
                 console.error(data);
-        }).catch(function (err) {
+        })
+            .catch(function (err) {
             console.error(err);
         });
     };
