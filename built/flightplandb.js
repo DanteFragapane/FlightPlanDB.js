@@ -1,8 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-var axios_1 = __importDefault(require("axios"));
+var axios_1 = require("axios");
 var baseUri = 'https://api.flightplandatabase.com';
 // Class for the route object
 var Route = /** @class */ (function () {

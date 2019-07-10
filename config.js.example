@@ -1,0 +1,4 @@
+// This config is used only for the unit testing script. If you are not running the unit tests, you don't need to bother filling this out.
+const apiKey = ''
+
+module.exports = apiKey
